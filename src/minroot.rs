@@ -6,7 +6,7 @@ use num_bigint::BigUint;
 ///
 /// The method takes two field elements `x` and `y` and an index `i` and returns
 /// ```text
-/// (x_(i+1), y_(i+1)) <- [(x_i + y_i)^((4 p - 3) / 5), x_i] + (0, i)
+/// (x_(i+1), y_(i+1)) <- [(x_i + y_i)^((2 p - 1) / 3), x_i] + (0, i)
 /// ```
 ///
 /// The modulo `p` must not be divisible by 3.
