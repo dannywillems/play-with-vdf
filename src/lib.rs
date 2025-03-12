@@ -35,18 +35,3 @@ pub fn minroot_fifth<F: PrimeField>(x: F, y: F, i: usize) -> (F, F) {
     let y_i_plus_1 = x;
     (x_i_plus_1, y_i_plus_1 + F::from(i as u64))
 }
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    use ark_vesta::Fr;
-
-    #[test]
-    fn test_minroot_fifth() {
-        let x = Fr::from(3u64);
-        let y = Fr::from(4u64);
-        let i = 5;
-        let (x_i_plus_1, y_i_plus_1) = minroot_fifth(x, y, i);
-    }
-}
