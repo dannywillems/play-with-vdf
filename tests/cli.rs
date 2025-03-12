@@ -1,7 +1,7 @@
 #[test]
 fn test_minroot_fifth() {
     let output = std::process::Command::new("cargo")
-        .args(&[
+        .args([
             "run",
             "--release",
             "--",
