@@ -30,7 +30,6 @@ pub fn fifth<F: PrimeField>(x: F, y: F, i: usize) -> (F, F) {
 
     let x_plus_y = x + y;
     let inv_x_plus_y = x_plus_y.inverse().unwrap();
-    // Compute res^(5) = x^((4p - 3) / 5)
     let x_i_plus_1 = inv_x_plus_y.square().square() * inv_x_plus_y;
     let y_i_plus_1 = x;
     (x_i_plus_1, y_i_plus_1 + F::from(i as u64))
