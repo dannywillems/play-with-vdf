@@ -13,7 +13,7 @@ use num_bigint::BigUint;
 pub fn cube<F: PrimeField>(x: F, y: F, i: usize) -> (F, F) {
     // Checking that p - 1 is not divisible by 3
     let one = BigUint::from(1u64);
-    let three = BigUint::from(2u64);
+    let three = BigUint::from(3u64);
     let modulus: BigUint = F::MODULUS.into();
     {
         let modulus_minus_one: BigUint = modulus.clone() - one;
