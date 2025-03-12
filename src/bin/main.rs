@@ -37,7 +37,7 @@ pub fn main() {
             let mut final_res = (x, y);
             let start_time = std::time::Instant::now();
             (0..n).for_each(|i| {
-                let res = vdf::minroot::fifth(final_res.0, final_res.1, i as usize);
+                let res = vdf_rs::minroot::fifth(final_res.0, final_res.1, i as usize);
                 final_res = res;
                 debug!("Results at step {i}: {:?}", final_res);
             });
