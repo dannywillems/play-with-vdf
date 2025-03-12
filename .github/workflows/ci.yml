@@ -78,6 +78,10 @@ jobs:
         with:
           toolchain: nightly
           override: true
+      - name: Install rustfmt and cargo-sort
+        run: |
+          rustup component add rustfmt
+          cargo install cargo-sort || true
       - name: Check code formatting
         run: make check-format
 
