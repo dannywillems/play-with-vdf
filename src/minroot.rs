@@ -9,6 +9,37 @@ use num_bigint::BigUint;
 /// (x_(i+1), y_(i+1)) <- [(x_i + y_i)^((4 p - 3) / 5), x_i] + (0, i)
 /// ```
 ///
+/// The modulo `p` must not be divisible by 3.
+pub fn cube<F: PrimeField>(x: F, y: F, i: usize) -> (F, F) {
+    // Checking that p - 1 is not divisible by 3
+    let one = BigUint::from(1u64);
+    let three = BigUint::from(2u64);
+    let modulus: BigUint = F::MODULUS.into();
+    {
+        let modulus_minus_one: BigUint = modulus.clone() - one;
+        {
+            assert_ne!(
+                modulus_minus_one.clone() % three.clone(),
+                BigUint::from(0u64)
+            );
+        }
+    }
+
+    let x_plus_y = x + y;
+    let inv_x_plus_y = x_plus_y.inverse().unwrap();
+    let x_i_plus_1 = inv_x_plus_y.square() * inv_x_plus_y;
+    let y_i_plus_1 = x;
+    (x_i_plus_1, y_i_plus_1 + F::from(i as u64))
+}
+
+/// An implementation of [MinRoot VDF](https://eprint.iacr.org/2022/1626.pdf)
+/// over a generic prime field `F`.
+///
+/// The method takes two field elements `x` and `y` and an index `i` and returns
+/// ```text
+/// (x_(i+1), y_(i+1)) <- [(x_i + y_i)^((4 p - 3) / 5), x_i] + (0, i)
+/// ```
+///
 /// The modulo `p` must be divisible by 3, but not by 5.
 pub fn fifth<F: PrimeField>(x: F, y: F, i: usize) -> (F, F) {
     // Checking that p - 1 is divisible by 3, but not by five.
