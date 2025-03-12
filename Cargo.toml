@@ -1,0 +1,22 @@
+[package]
+name = "vdf"
+version = "0.1.0"
+edition = "2021"
+authors = ["Danny Willems <be.danny.willems@gmail.com>"]
+description = "Different VDF implementation in Rust"
+repository = "https://github.com/dannywillems/play-with-vdf"
+license = "MIT"
+keywords = ["vdf"]
+categories = ["cryptography"]
+
+[dependencies]
+ark-ff = { version = "*" }
+ark-vesta = { version = "*" }
+clap = { version = "*", features = ["derive"] }
+env_logger = { version = "*" }
+log = { version = "*" }
+num-bigint = { version = "*" }
+
+[[bin]]
+name = "vdf"
+path = "src/bin/main.rs"
